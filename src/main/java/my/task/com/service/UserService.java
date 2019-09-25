@@ -15,4 +15,5 @@ public interface UserService {
     boolean exist(String login);
 
     void edit(String login,String lastName);
+
 }

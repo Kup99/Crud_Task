@@ -14,7 +14,6 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @ComponentScan(basePackages = "my.task.com")
 public class WebConfig extends WebMvcConfigurerAdapter {
-
     @Bean
     public ViewResolver internalResourceViewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
@@ -23,7 +22,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         bean.setSuffix(".jsp");
         return bean;
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+
 }}

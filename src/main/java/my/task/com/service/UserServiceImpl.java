@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
         userDao.addUser(user);
     }
 
-
     public boolean exist(String login) {
         return userDao.exist(login);
     }
@@ -34,6 +33,7 @@ public class UserServiceImpl implements UserService {
     public void edit(String login, String lastName) {
         userDao.edit(login, lastName);
     }
+
 }
 
 

@@ -9,7 +9,6 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.annotation.Resource;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -21,23 +20,15 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-
     @Resource(name = "sessionFactory")
     public SessionFactory sessionFactory;
 
-
-//    @Autowired
-//    public void setSessionFactory(SessionFactory sessionFactory) {
-//        this.sessionFactory = sessionFactory;
-//    }
-
-    protected Session getSession(){
+    protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 
 
     public List<User> getUserByLogin(String login) {
-//        Session session = sessionFactory.getCurrentSession();
         Query query = getSession().createQuery("from User where login=:login");
         query.setParameter("login", login);
         List list = query.getResultList();
@@ -45,26 +36,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void addUser(User user) {
-//        Session session = sessionFactory.getCurrentSession();
         long save = (Long) getSession().save(user);
         System.out.println(save);
     }
 
-    public void edit(String login,String lastName) {
-
-//        Session session = sessionFactory.getCurrentSession();
+    public void edit(String login, String lastName) {
         Query query = getSession().createQuery("update User set lastName = :lastName where login = :login");
-
         query.setParameter("lastName", lastName);
         query.setParameter("login", login);
-
         int result = query.executeUpdate();
         System.out.println(result);
     }
 
+
+
     public boolean exist(String login) {
         Session session;
-
         session = sessionFactory.openSession();
         session.beginTransaction();
         Criteria criteria = session.createCriteria(User.class);
@@ -80,6 +67,7 @@ public class UserDaoImpl implements UserDao {
 
 
     }
+    
 }
 
 
